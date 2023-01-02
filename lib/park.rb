@@ -12,10 +12,23 @@ class Park
   end
 
   def passengers
-    @vehicles.flat_map { |vehicle| vehicle.passengers }
+    @vehicles.flat_map(&:passengers)
   end
 
   def revenue
-    vehicles.sum { |vehicle| vehicle.num_adults } * @price
+    @vehicles.sum(&:num_adults) * @price
+  end
+
+  def patrons
+    passengers.map(&:name).sort
+  end
+
+  def adults
+    passengers.select(&:adult?).map(&:name).sort
+  end
+
+  def minors
+    minors = passengers.select { |passenger| !passenger.adult? }
+    minors.map(&:name).sort
   end
 end
