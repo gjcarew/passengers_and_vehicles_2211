@@ -49,4 +49,35 @@ RSpec.describe Park do
     expect(park.revenue).to eq(70.86)
   end
 
+  it 'Can list names of all patrons' do 
+    toyota.add_passenger(charlie)
+    toyota.add_passenger(jude)
+    honda.add_passenger(taylor)
+    park.admit(toyota)
+    park.admit(honda)
+
+    expect(park.patrons).to eq(%w[Charlie Jude Taylor])
+  end
+
+  it 'Can list adults in alphabetical order' do
+    toyota.add_passenger(charlie)
+    toyota.add_passenger(jude)
+    honda.add_passenger(taylor)
+    park.admit(toyota)
+    park.admit(honda)
+
+    expect(park.adults).to eq(%w[Charlie Jude])
+  end
+
+  it 'Can list children in alphabetical order' do
+    frankie = Passenger.new({"name" => "Frankie", "age" => 11})
+    toyota.add_passenger(charlie)
+    toyota.add_passenger(jude)
+    toyota.add_passenger(frankie)
+    honda.add_passenger(taylor)
+    park.admit(toyota)
+    park.admit(honda)
+
+    expect(park.minors).to eq(%w[Frankie Taylor])
+  end
 end
