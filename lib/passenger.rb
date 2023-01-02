@@ -4,7 +4,7 @@ class Passenger
   def initialize(input_hash)
     @name = input_hash['name']
     @age = input_hash['age']
-    @driver  = false
+    @driver = false
   end
 
   def adult?
