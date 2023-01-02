@@ -18,13 +18,13 @@ RSpec.describe Park do
     expect(park.price).to eq(35.43)
   end
 
-  it 'can list admit vehicles to the park' do 
+  it 'can list admitted vehicles to the park' do 
     expect(park.vehicles).to be_an Array
     expect(park.vehicles).to be_empty
     park.admit(honda)
     park.admit(toyota)
 
-    expect(park.vehicles).to eq(honda, toyota)
+    expect(park.vehicles).to eq([honda, toyota])
   end
 
   it 'can list passengers that entered the park' do 
